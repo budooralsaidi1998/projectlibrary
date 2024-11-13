@@ -1,0 +1,216 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|c:\\users\\codeline user\\onedrive\\desktop\\systemlibrary\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|c:\\users\\codeline user\\onedrive\\desktop\\systemlibrary\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|c:\\users\\codeline user\\onedrive\\desktop\\systemlibrary\\reposertity\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|solutionrelative:reposertity\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|c:\\users\\codeline user\\onedrive\\desktop\\systemlibrary\\reposertity\\adminrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|solutionrelative:reposertity\\adminrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|c:\\users\\codeline user\\onedrive\\desktop\\systemlibrary\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|solutionrelative:models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|c:\\users\\codeline user\\onedrive\\desktop\\systemlibrary\\models\\borrowing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|solutionrelative:models\\borrowing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|c:\\users\\codeline user\\onedrive\\desktop\\systemlibrary\\migrations\\20241113054052_updatelast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|solutionrelative:migrations\\20241113054052_updatelast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|c:\\users\\codeline user\\onedrive\\desktop\\systemlibrary\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|solutionrelative:models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|c:\\users\\codeline user\\onedrive\\desktop\\systemlibrary\\models\\adming.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|solutionrelative:models\\adming.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|c:\\users\\codeline user\\onedrive\\desktop\\systemlibrary\\reposertity\\bookrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|solutionrelative:reposertity\\bookrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|c:\\users\\codeline user\\onedrive\\desktop\\systemlibrary\\reposertity\\borrowrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8059333F-2985-4248-AB1B-8919F0AA6DD6}|Systemlibrary.csproj|solutionrelative:reposertity\\borrowrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAALgAAAAAAAAAAAAAAOkAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T12:05:17.403Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminRepo.cs",
+              "DocumentMoniker": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\Reposertity\\AdminRepo.cs",
+              "RelativeDocumentMoniker": "Reposertity\\AdminRepo.cs",
+              "ToolTip": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\Reposertity\\AdminRepo.cs",
+              "RelativeToolTip": "Reposertity\\AdminRepo.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T10:36:25.212Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "20241113054052_updatelast.cs",
+              "DocumentMoniker": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\Migrations\\20241113054052_updatelast.cs",
+              "RelativeDocumentMoniker": "Migrations\\20241113054052_updatelast.cs",
+              "ToolTip": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\Migrations\\20241113054052_updatelast.cs",
+              "RelativeToolTip": "Migrations\\20241113054052_updatelast.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T10:13:22.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "userRepo.cs",
+              "DocumentMoniker": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\Reposertity\\userRepo.cs",
+              "RelativeDocumentMoniker": "Reposertity\\userRepo.cs",
+              "ToolTip": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\Reposertity\\userRepo.cs",
+              "RelativeToolTip": "Reposertity\\userRepo.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAiwBkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T09:44:13.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "user.cs",
+              "DocumentMoniker": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\models\\user.cs",
+              "RelativeDocumentMoniker": "models\\user.cs",
+              "ToolTip": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\models\\user.cs",
+              "RelativeToolTip": "models\\user.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABMAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T09:40:58.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "adming.cs",
+              "DocumentMoniker": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\models\\adming.cs",
+              "RelativeDocumentMoniker": "models\\adming.cs",
+              "ToolTip": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\models\\adming.cs",
+              "RelativeToolTip": "models\\adming.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T09:22:16.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "bookRepo.cs",
+              "DocumentMoniker": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\Reposertity\\bookRepo.cs",
+              "RelativeDocumentMoniker": "Reposertity\\bookRepo.cs",
+              "ToolTip": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\Reposertity\\bookRepo.cs",
+              "RelativeToolTip": "Reposertity\\bookRepo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T06:39:36.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "book.cs",
+              "DocumentMoniker": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\models\\book.cs",
+              "RelativeDocumentMoniker": "models\\book.cs",
+              "ToolTip": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\models\\book.cs",
+              "RelativeToolTip": "models\\book.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAADwvyYAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T06:39:31.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "category.cs",
+              "DocumentMoniker": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\models\\category.cs",
+              "RelativeDocumentMoniker": "models\\category.cs",
+              "ToolTip": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\models\\category.cs",
+              "RelativeToolTip": "models\\category.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T12:06:05.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "borrowRepo.cs",
+              "DocumentMoniker": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\Reposertity\\borrowRepo.cs",
+              "RelativeDocumentMoniker": "Reposertity\\borrowRepo.cs",
+              "ToolTip": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\Reposertity\\borrowRepo.cs",
+              "RelativeToolTip": "Reposertity\\borrowRepo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T12:23:24.117Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "borrowing.cs",
+              "DocumentMoniker": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\models\\borrowing.cs",
+              "RelativeDocumentMoniker": "models\\borrowing.cs",
+              "ToolTip": "C:\\Users\\codeline User\\OneDrive\\Desktop\\Systemlibrary\\models\\borrowing.cs",
+              "RelativeToolTip": "models\\borrowing.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAwA4AAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T12:07:03.488Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
