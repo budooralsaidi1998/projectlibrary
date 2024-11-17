@@ -1,11 +1,12 @@
-﻿using Microsoft.Identity.Client;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 using System.Reflection;
 using Systemlibrary.models;
 using Systemlibrary.Reposertity;
 
 namespace Systemlibrary
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -37,9 +38,7 @@ namespace Systemlibrary
                     switch (choice)
                     {
                         case "1":
-                        static void RegisterAdmin(AdminRepo adminRepo)
-
-                        {
+                     
                             Console.WriteLine("enter the name : ");
                             string name=Console.ReadLine();
 
@@ -49,18 +48,17 @@ namespace Systemlibrary
                             int pass=int.Parse(Console.ReadLine());
 
                             var adminreg = new adming { admin_name = name, admin_email = email, admin_password = pass };
-                            adminRepo.Add(adminreg);
+                            AdminRepo.Add(adminreg);
                             Console.WriteLine("Success Added");
                             Console.WriteLine("");
                             Console.ReadLine();
 
-                        }
+                        
 
-                        RegisterAdmin(AdminRepo);
 
                             break;
                         case "2":
-                        static void loginAdmin(AdminRepo adminRepo)
+                        static void loginAdmin(AdminRepo adminRepo,bookRepo book )
                         {
 
 
@@ -74,14 +72,14 @@ namespace Systemlibrary
                             {
                                 if(email == admin.admin_email || pass == admin.admin_password)
                                 {
-                                    menuAdmin();
+                                    menuAdmin(adminRepo,book);
                                 }
                             }
 
 
 
                         }
-                        loginAdmin(AdminRepo);
+                        loginAdmin(AdminRepo,bookRepo);
 
 
                         break;
@@ -156,7 +154,8 @@ namespace Systemlibrary
             
 
 
-            static void menuAdmin() {
+            static void menuAdmin(AdminRepo adminprocess, bookRepo bookRepo) {
+             
                 bool running = true;
                 while (running)
                 {
@@ -172,7 +171,8 @@ namespace Systemlibrary
                     switch (choice)
                     {
                         case "1":
-                            bookmenu();
+                            
+                            bookmenu(bookRepo);
                             break;
                         case "2":
                             Categorymenu();
@@ -208,7 +208,25 @@ namespace Systemlibrary
                     switch (choice)
                     {
                         case "1":
-                         
+
+                       //static void GetBook (bookRepo BookRepo)
+                       //     {
+                       //         var getbook = BookRepo.GetAll();
+                       //         Console.WriteLine(" Book details:");
+                       //         foreach (var book in getbook)
+                       //         {
+                       //             Console.WriteLine($"book name : {book.namebook}\t" +
+                       //                               $" book author : {book.author} \t" +
+                       //                               $"book category : {book.category}\t" +
+                       //                               $"book borrow: {book.borrowcopies}\t" +
+                       //                               $"book number of copies: {book.copies_number}");
+                       //         }
+                       //     }
+
+                       //     GetBook(bookRepo);
+
+
+
                             break;
                         case "2":
                           
@@ -231,7 +249,7 @@ namespace Systemlibrary
             }
 
 
-            static void bookmenu()
+            static void bookmenu(bookRepo addbook)
             {
                 bool running = true;
                 while (running)
@@ -250,14 +268,63 @@ namespace Systemlibrary
                     {
                         case "1":
 
+                           //static void AddbOOK(bookRepo addbook)
+                           // {
+                               Console.WriteLine(" add the new book : ");
+                                Console.Write(" Name book : ");
+                                string namebook = Console.ReadLine();
+                               
+                                Console.Write(" borrow book  : ");
+                               int borrowbook  = int.Parse(Console.ReadLine());
+
+                                Console.Write(" author  book : ");
+                                string author = Console.ReadLine();
+
+                                Console.Write(" copies book : ");  
+                                int  numcopis  =int.Parse(Console.ReadLine());
+                                
+                                Console.Write(" price  book : ");
+
+                                if (double.TryParse(Console.ReadLine(), out var price))
+                                {
+                                    var book = new book { namebook=namebook , copies_number=borrowbook, author=author,borrowcopies=numcopis,price_book=price };
+                                    addbook.Add(book);
+                                    Console.WriteLine("book added successfully!");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid book input.");
+                                }
+
+
+                            //}
+
+                            //AddbOOK(bookRepo);
                             
                            
                             break;
                         case "2":
                          
+                                Console.Write("enter the name you want to search : ");
+                                string name = Console.ReadLine();
+
+                                book getbookbyname =addbook.GetByName(name);
+
+                                if(getbookbyname != null)
+                                {
+                                Console.WriteLine($"id book : {getbookbyname.bookid}" +
+                                                   $"the name book : {getbookbyname.namebook}\t" +
+                                                   $" the author : {getbookbyname.author}");
+                                }
+                              
+                            
+
+
+
+
                             break;
                         case "3":
-                          
+                            
                             break;
                         case "4":
                            
