@@ -314,27 +314,37 @@ namespace Systemlibrary
 
                             break;
                         case "3":
-                            static void UpdateBook(bookRepo bookrepo)
-                            {
+                          
 
-                                GetBook(bookrepo);
+                                GetBook(addbook);
                                 Console.WriteLine("enter the name of book : ");
                                 string bookname = Console.ReadLine();
                                
-                                book  booknameupdated = bookrepo.GetByName(bookname);
+                                book  booknameupdated = addbook.GetByName(bookname);
                                 if(booknameupdated != null)
                                 {
                                     Console.Write("Enter new author name: ");
-                                  string author = Console.ReadLine();
+                                  string authorupdate = Console.ReadLine();
 
-                                    booknameupdated.author = author;
-                                    bookrepo.Update();                                 
+                                    booknameupdated.author = authorupdate;
+                                    addbook.Update(booknameupdated.author);                                 
                                 }
                                
-                            }
+                       
                             break;
                         case "4":
                            
+                             Console.WriteLine("enter the id you want to research : ");
+                            int idbook = int.Parse(Console.ReadLine());
+                            
+                            book bookdelete = addbook.GetByID(idbook);
+                            if(bookdelete != null)
+                            {
+                                bookRepo.Delete(bookdelete.bookid, bookdelete.namebook,bookdelete.copies_number,bookdelete.author,bookdelete.borrowcopies,bookdelete.price_book,bookdelete.categoryid);
+
+                            }
+
+                            
                             break;
                         case "5":
                             running = false;
