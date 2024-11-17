@@ -1,6 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
+using System.Transactions;
 using Systemlibrary.models;
 using Systemlibrary.Reposertity;
 
@@ -119,7 +121,7 @@ namespace Systemlibrary
 
                         break;
                         case "4":
-                        static void userLogin(userRepo userrepo)
+                        static void userLogin(userRepo userrepo, bookRepo bookrepo)
                         {
 
 
@@ -133,14 +135,14 @@ namespace Systemlibrary
                             {
                                 if (email == loginuser.userEmail || pass == loginuser.Password)
                                 {
-                                    UserMenu();
+                                    UserMenu(userrepo, bookrepo);
                                 }
                             }
 
 
 
                         }
-                        userLogin(userRepo);
+                        userLogin(userRepo , bookRepo );
                         break;
                         case "5":
                         
@@ -190,7 +192,7 @@ namespace Systemlibrary
                 }
             }
 
-            static void UserMenu()
+            static void UserMenu(userRepo userr,bookRepo bookrepo)
             {
                 bool running = true;
                 while (running)
@@ -209,21 +211,9 @@ namespace Systemlibrary
                     {
                         case "1":
 
-                       //static void GetBook (bookRepo BookRepo)
-                       //     {
-                       //         var getbook = BookRepo.GetAll();
-                       //         Console.WriteLine(" Book details:");
-                       //         foreach (var book in getbook)
-                       //         {
-                       //             Console.WriteLine($"book name : {book.namebook}\t" +
-                       //                               $" book author : {book.author} \t" +
-                       //                               $"book category : {book.category}\t" +
-                       //                               $"book borrow: {book.borrowcopies}\t" +
-                       //                               $"book number of copies: {book.copies_number}");
-                       //         }
-                       //     }
+                        
 
-                       //     GetBook(bookRepo);
+                            GetBook(bookrepo);
 
 
 
@@ -283,18 +273,18 @@ namespace Systemlibrary
                                 Console.Write(" copies book : ");  
                                 int  numcopis  =int.Parse(Console.ReadLine());
                                 
+
                                 Console.Write(" price  book : ");
 
-                                if (double.TryParse(Console.ReadLine(), out var price))
-                                {
-                                    var book = new book { namebook=namebook , copies_number=borrowbook, author=author,borrowcopies=numcopis,price_book=price };
-                                    addbook.Add(book);
-                                    Console.WriteLine("book added successfully!");
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Invalid book input.");
-                                }
+                                double price = double.Parse(Console.ReadLine());
+
+                                Console.Write("enter the category id : ");
+                                int id = int.Parse(Console.ReadLine());
+                                  var book = new book { namebook=namebook , copies_number=borrowbook, author=author,borrowcopies=numcopis,price_book=price,categoryid=id };
+                                  addbook.Add(book);
+                                  Console.WriteLine("book added successfully!");
+                                
+                                
 
 
                             //}
@@ -324,7 +314,24 @@ namespace Systemlibrary
 
                             break;
                         case "3":
-                            
+                            static void UpdateBook(bookRepo bookrepo)
+                            {
+
+                                GetBook(bookrepo);
+                                Console.WriteLine("enter the name of book : ");
+                                string bookname = Console.ReadLine();
+                               
+                                book  booknameupdated = bookrepo.GetByName(bookname);
+                                if(booknameupdated != null)
+                                {
+                                    Console.Write("Enter new author name: ");
+                                  string author = Console.ReadLine();
+
+                                    booknameupdated.author = author;
+                                    bookrepo.Update();                                 
+                                }
+                               
+                            }
                             break;
                         case "4":
                            
@@ -410,6 +417,19 @@ namespace Systemlibrary
                             Console.WriteLine("Invalid choice. Please try again.");
                             break;
                     }
+                }
+            }
+            static void GetBook(bookRepo bookrepo)
+            {
+                var getbook = bookrepo.GetAll();
+                Console.WriteLine(" Book details:");
+                foreach (var book in getbook)
+                {
+                    Console.WriteLine($"book name : {book.namebook}\t" +
+                                      $" book author : {book.author} \t" +
+                                      $"book category : {book.category}\t" +
+                                      $"book borrow: {book.borrowcopies}\t" +
+                                      $"book number of copies: {book.copies_number}");
                 }
             }
         }
