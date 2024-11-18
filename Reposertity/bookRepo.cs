@@ -25,16 +25,28 @@ namespace Systemlibrary.Reposertity
 
         public book GetByName(string name)
         {
-            return _context.Books.Find(name);
+            return _context.Books.FirstOrDefault(c => c.namebook == name);
         }
-
         public book GetByID(int ID)
         {
             return _context.Books.Find(ID);
         }
 
+        //public void Add(book book)
+        //{
+        //    _context.Books.Add(book);
+        //    _context.SaveChanges();
+        //}
         public void Add(book book)
         {
+            // Ensure category is valid and exists in the database
+            var category = _context.categories.FirstOrDefault(c => c.CId == book.categoryid);
+            if (category == null)
+            {
+                Console.WriteLine("Category does not exist.");
+            }
+
+            // Add the book with the related category
             _context.Books.Add(book);
             _context.SaveChanges();
         }
@@ -63,6 +75,21 @@ namespace Systemlibrary.Reposertity
                 _context.SaveChanges();
             }
         }
+        public void Update(int bookid, string namebook,string author, int borrowcopies)
+        {
+            var book = GetByID(bookid);
+
+            if (book != null)
+            {
+                book.namebook = namebook;
+                book.author = author;
+                book.borrowcopies = borrowcopies;
+
+                _context.Books.Update(book);
+                _context.SaveChanges();
+            }
+        }
+
 
         public void Delete( int id)
         {
