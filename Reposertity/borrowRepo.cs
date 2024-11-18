@@ -62,6 +62,16 @@ namespace Systemlibrary.Reposertity
 
         }
 
-      
-}
+        public void Updaterecode(borrowing borrowingRecord)
+        {
+            var borrowing = _context.borrowings.Find(borrowingRecord.userid, borrowingRecord.bookid, borrowingRecord.borrow_date);
+            if (borrowing != null)
+            {
+                borrowing.isreturn = borrowingRecord.isreturn;
+                borrowing.return_date = borrowingRecord.return_date;
+                _context.borrowings.Update(borrowing);
+                _context.SaveChanges();
+            }
+        }
+    }
 }
