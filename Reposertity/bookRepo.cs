@@ -40,12 +40,25 @@ namespace Systemlibrary.Reposertity
         }
 
 
-        public void Update( string name)
-        {
-            var book = GetByName(name);
+        //public void Update( string name)
+        //{
+        //    var book = GetByName(name);
 
-            if (book!=null)
+        //    if (book!=null)
+        //    {
+        //        _context.Books.Update(book);
+        //        _context.SaveChanges();
+        //    }
+        //}
+        public void Update(int id, string name, string author)
+        {
+            var book = GetByID(id);
+
+            if (book != null)
             {
+                book.namebook = name;
+                book.author = author;
+             
                 _context.Books.Update(book);
                 _context.SaveChanges();
             }
