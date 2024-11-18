@@ -317,34 +317,70 @@ namespace Systemlibrary
                           
 
                                 GetBook(addbook);
-                                Console.WriteLine("enter the name of book : ");
-                                string bookname = Console.ReadLine();
-                               
-                                book  booknameupdated = addbook.GetByName(bookname);
-                                if(booknameupdated != null)
+                            
+                            
+                                Console.Write("Enter the ID of the book you want to update: ");
+                                if (int.TryParse(Console.ReadLine(), out int bookId))
                                 {
-                                    Console.Write("Enter new author name: ");
-                                  string authorupdate = Console.ReadLine();
+                                    // Fetch the book by ID
+                                    var bookToUpdate = addbook.GetByID(bookId);
 
-                                    booknameupdated.author = authorupdate;
-                                    addbook.Update(booknameupdated.author);                                 
+                                    if (bookToUpdate != null)
+                                    {
+                                        // Display current book details
+                                        Console.WriteLine($"Current Name: {bookToUpdate.namebook}");
+                                        Console.WriteLine($"Current Author: {bookToUpdate.author}");
+
+                                        // Ask for new values for name and author
+                                        Console.Write("Enter new name for the book: ");
+                                        string newName = Console.ReadLine();
+
+                                        Console.Write("Enter new author name: ");
+                                        string newAuthor = Console.ReadLine();
+
+                                        // Update the book with new name and author
+                                        addbook.Update(bookId, newName, newAuthor);
+
+                                        Console.WriteLine("Book updated successfully.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("No book found with that ID.");
+                                    }
                                 }
-                               
-                       
+                                else
+                                {
+                                    Console.WriteLine("Invalid ID format.");
+                                }
+                            
+
+
                             break;
                         case "4":
+
                            
-                             Console.WriteLine("enter the id you want to research : ");
-                            int idbook = int.Parse(Console.ReadLine());
                             
-                            book bookdelete = addbook.GetByID(idbook);
-                            if(bookdelete != null)
-                            {
-                                bookRepo.Delete(bookdelete.bookid, bookdelete.namebook,bookdelete.copies_number,bookdelete.author,bookdelete.borrowcopies,bookdelete.price_book,bookdelete.categoryid);
+                                Console.Write("Enter the ID of the book you want to delete: ");
+                                if (int.TryParse(Console.ReadLine(), out int book_Id))
+                                {
+                                    var bookToDelete = addbook.GetByID(book_Id);
 
-                            }
+                                    if (bookToDelete != null)
+                                    {
+                                        addbook.Delete(book_Id);
+                                        Console.WriteLine("Book deleted successfully.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("No book found with that ID.");
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid ID format.");
+                                }
+                      
 
-                            
                             break;
                         case "5":
                             running = false;
