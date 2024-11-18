@@ -22,9 +22,13 @@ namespace Systemlibrary.Reposertity
             return _context.categories.ToList();
         }
 
+        //public category GetByName(string name)
+        //{
+        //    return _context.categories.Find(name);
+        //}
         public category GetByName(string name)
         {
-            return _context.categories.Find(name);
+            return _context.categories.FirstOrDefault(c => c.cat_name==name);
         }
 
         public category GetByID(int ID)
@@ -39,14 +43,31 @@ namespace Systemlibrary.Reposertity
         }
 
 
-        public void Update(string name)
-        {
-            var book = GetByName(name);
+        //public void Update(string name)
+        //{
+        //    var book = GetByName(name);
 
-            if (book != null)
+        //    if (book != null)
+        //    {
+        //        _context.categories.Update(book);
+        //        _context.SaveChanges();
+        //    }
+        //}
+        public void Update(int id, string newCatName, int newCategoryNumber)
+        {
+            var categoryToUpdate = GetByID(id);
+
+            if (categoryToUpdate != null)
             {
-                _context.categories.Update(book);
+                categoryToUpdate.cat_name = newCatName;
+                categoryToUpdate.number_categery = newCategoryNumber;
+
+                _context.categories.Update(categoryToUpdate);
                 _context.SaveChanges();
+            }
+            else
+            {
+                Console.WriteLine("Category not found.");
             }
         }
 
