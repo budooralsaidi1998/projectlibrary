@@ -13,7 +13,7 @@ namespace Systemlibrary
     {
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(" Data Source=localhost; Initial Catalog=library; Integrated Security=true; TrustServerCertificate=True ");
+            options.UseSqlServer(" Data Source=DESKTOP-BQ74VB4\\SQLEXPRESS; Initial Catalog=library; Integrated Security=true; TrustServerCertificate=True ");
         }
 
         public DbSet<book> Books { get; set; }
