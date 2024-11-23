@@ -164,7 +164,7 @@ namespace Systemlibrary
 
 
 
-            static void menuAdmin(AdminRepo adminprocess, bookRepo bookRepo,categoryRepo cate)
+            static void menuAdmin(AdminRepo adminprocess, bookRepo bookRepo)
             {
                 var bookrepoo = new bookRepo(new ApplicationContext());
                 var userre = new userRepo(new ApplicationContext());
