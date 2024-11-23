@@ -18,51 +18,51 @@ namespace Systemlibrary
 
             // Create repositories
             var AdminRepo = new AdminRepo(dbContext);
-          //  var bookRepo = new bookRepo(dbContext);
+            //  var bookRepo = new bookRepo(dbContext);
             var borrowRepo = new borrowRepo(dbContext);
-          //  var categoryRepo = new categoryRepo(dbContext);
+            //  var categoryRepo = new categoryRepo(dbContext);
             var userRepo = new userRepo(dbContext);
 
 
-           
-                bool running = true;
-                while (running)
-                {
+
+            bool running = true;
+            while (running)
+            {
                 Console.Clear();
-                    Console.WriteLine("\nChoose an option:");
-                    Console.WriteLine("1.register admin ");
-                    Console.WriteLine("2.login admin ");
-                    Console.WriteLine("3.register user  ");
-                    Console.WriteLine("4.login user ");
-                     Console.WriteLine("5. Exit");
-                    Console.Write("Enter your choice: ");
-                    var choice = Console.ReadLine();
+                Console.WriteLine("\nChoose an option:");
+                Console.WriteLine("1.register admin ");
+                Console.WriteLine("2.login admin ");
+                Console.WriteLine("3.register user  ");
+                Console.WriteLine("4.login user ");
+                Console.WriteLine("5. Exit");
+                Console.Write("Enter your choice: ");
+                var choice = Console.ReadLine();
 
-                    switch (choice)
-                    {
-                        case "1":
-                     
-                            Console.WriteLine("enter the name : ");
-                            string name=Console.ReadLine();
+                switch (choice)
+                {
+                    case "1":
 
-                            Console.WriteLine("enter the email :");
-                            string email = Console.ReadLine();
-                            Console.WriteLine("enter the password");
-                            int pass=int.Parse(Console.ReadLine());
+                        Console.WriteLine("enter the name : ");
+                        string name = Console.ReadLine();
 
-                            var adminreg = new adming { admin_name = name, admin_email = email, admin_password = pass };
-                            AdminRepo.Add(adminreg);
-                            Console.WriteLine("Success Added");
-                            Console.WriteLine("");
-                            Console.ReadLine();
+                        Console.WriteLine("enter the email :");
+                        string email = Console.ReadLine();
+                        Console.WriteLine("enter the password");
+                        int pass = int.Parse(Console.ReadLine());
 
-                        
+                        var adminreg = new adming { admin_name = name, admin_email = email, admin_password = pass };
+                        AdminRepo.Add(adminreg);
+                        Console.WriteLine("Success Added");
+                        Console.WriteLine("");
+                        Console.ReadLine();
 
 
-                            break;
-                        case "2":
+
+
+                        break;
+                    case "2":
                         var bookrepo = new bookRepo(new ApplicationContext());
-                        static void loginAdmin(AdminRepo adminRepo,bookRepo book )
+                        static void loginAdmin(AdminRepo adminRepo, bookRepo book)
                         {
 
 
@@ -72,11 +72,11 @@ namespace Systemlibrary
                             int pass = int.Parse(Console.ReadLine());
 
                             var adminlogin = adminRepo.GetAllAdmin();
-                            foreach(var admin in  adminlogin)
+                            foreach (var admin in adminlogin)
                             {
-                                if(email == admin.admin_email || pass == admin.admin_password)
+                                if (email == admin.admin_email || pass == admin.admin_password)
                                 {
-                                    menuAdmin(adminRepo,book);
+                                    menuAdmin(adminRepo, book);
                                 }
                             }
 
@@ -87,7 +87,7 @@ namespace Systemlibrary
 
 
                         break;
-                        case "3":
+                    case "3":
                         static void RegisterUser(userRepo userrepo)
 
                         {
@@ -122,7 +122,7 @@ namespace Systemlibrary
 
 
                         break;
-                        case "4":
+                    case "4":
                         var bookrepoo = new bookRepo(new ApplicationContext());
                         static void userLogin(userRepo userrepo, bookRepo bookrepo)
                         {
@@ -131,10 +131,10 @@ namespace Systemlibrary
                             Console.WriteLine("enter the email :");
                             string email = Console.ReadLine();
                             Console.WriteLine("enter the password");
-                            string pass =Console.ReadLine();
+                            string pass = Console.ReadLine();
 
                             var userloging = userrepo.GetAll();
-                            foreach (var loginuser in userloging )
+                            foreach (var loginuser in userloging)
                             {
                                 if (email == loginuser.userEmail || pass == loginuser.Password)
                                 {
@@ -145,21 +145,22 @@ namespace Systemlibrary
 
 
                         }
-                        userLogin(userRepo , bookrepoo);
+                        userLogin(userRepo, bookrepoo);
                         break;
-                        case "5":
-                        
-                            running = false;
-                            break;
-                        default:
-                            Console.WriteLine("Invalid choice. Please try again.");
-                            break;
-                    }
+                    case "5":
+
+                        running = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Please try again.");
+                        break;
                 }
-            
+            }
 
 
-            static void menuAdmin(AdminRepo adminprocess, bookRepo bookRepo) {
+
+            static void menuAdmin(AdminRepo adminprocess, bookRepo bookRepo)
+            {
                 var bookrepoo = new bookRepo(new ApplicationContext());
                 var userre = new userRepo(new ApplicationContext());
                 bool running = true;
@@ -177,7 +178,7 @@ namespace Systemlibrary
                     switch (choice)
                     {
                         case "1":
-                            
+
                             bookmenu();
                             break;
                         case "2":
@@ -219,7 +220,7 @@ namespace Systemlibrary
                     {
                         case "1":
 
-                        
+
 
                             GetBook(bookRepository);
                             Console.ReadLine();
@@ -245,36 +246,36 @@ namespace Systemlibrary
                                         Console.WriteLine("Category not found.");
                                     }
                                 }
-                                    Console.WriteLine($"Books in this Category:");
-                                    Console.Write("Enter Category ID to view its books: ");
-                                    int categoryId = int.Parse(Console.ReadLine());
+                                Console.WriteLine($"Books in this Category:");
+                                Console.Write("Enter Category ID to view its books: ");
+                                int categoryId = int.Parse(Console.ReadLine());
 
-                                    var category = cate.GetByID(categoryId);
+                                var category = cate.GetByID(categoryId);
 
-                                    // Get books in this category by categoryid
-                                    var booksInCategory = bookRepo.GetAll().Where(b => b.categoryid == category.CId).ToList();
+                                // Get books in this category by categoryid
+                                var booksInCategory = bookRepo.GetAll().Where(b => b.categoryid == category.CId).ToList();
 
-                                    if (booksInCategory.Any())
+                                if (booksInCategory.Any())
+                                {
+                                    foreach (var book in booksInCategory)
                                     {
-                                        foreach (var book in booksInCategory)
-                                        {
-                                            Console.WriteLine($"- Book Name: {book.namebook}, Author: {book.author}, Copies Available: {book.borrowcopies}");
-                                            Console.ReadLine() ;
-                                        }
+                                        Console.WriteLine($"- Book Name: {book.namebook}, Author: {book.author}, Copies Available: {book.borrowcopies}");
+                                        Console.ReadLine();
                                     }
-                                    else
-                                    {
-                                        Console.WriteLine("No books available in this category.");
-                                    }
-
-
-
                                 }
-                            
-                            viewcategory(categoryRepository,bookRepository);
+                                else
+                                {
+                                    Console.WriteLine("No books available in this category.");
+                                }
+
+
+
+                            }
+
+                            viewcategory(categoryRepository, bookRepository);
                             break;
                         case "3":
-                             static void BorrowBook(borrowRepo borrowRepo, bookRepo bookRepo, userRepo userRepo)
+                            static void BorrowBook(borrowRepo borrowRepo, bookRepo bookRepo, userRepo userRepo)
                             {
                                 Console.Write("Enter User ID: ");
                                 int userId = int.Parse(Console.ReadLine());
@@ -298,7 +299,7 @@ namespace Systemlibrary
                                         userid = userId,
                                         bookid = bookId,
                                         borrow_date = DateTime.Now,
-                                        return_date= 
+                                        return_date = DateTime.Now.AddDays(book.copies_number),
                                         isreturn = false  // Mark as not returned
                                     };
 
@@ -318,7 +319,7 @@ namespace Systemlibrary
                             BorrowBook(borrowRepository, bookRepository, userRepository);
                             break;
                         case "4":
-                             static void ReturnBook(borrowRepo borrowRepo, bookRepo bookRepo)
+                            static void ReturnBook(borrowRepo borrowRepo, bookRepo bookRepo)
                             {
                                 Console.Write("Enter User ID: ");
                                 int userId = int.Parse(Console.ReadLine());
@@ -326,7 +327,7 @@ namespace Systemlibrary
                                 Console.Write("Enter Book ID to return: ");
                                 int bookId = int.Parse(Console.ReadLine());
 
-                                var borrowingRecord = borrowRepo.GetAll().FirstOrDefault(b => b.userid  == userId && b.bookid == bookId && !b.isreturn);
+                                var borrowingRecord = borrowRepo.GetAll().FirstOrDefault(b => b.userid == userId && b.bookid == bookId && !b.isreturn);
 
                                 if (borrowingRecord != null)
                                 {
@@ -387,21 +388,21 @@ namespace Systemlibrary
                     {
                         case "1":
 
-                           static void AddbOOK(bookRepo addbook)
+                            static void AddbOOK(bookRepo addbook)
                             {
-                               Console.WriteLine(" add the new book : ");
+                                Console.WriteLine(" add the new book : ");
                                 Console.Write(" Name book : ");
                                 string namebook = Console.ReadLine();
-                               
+
                                 Console.Write(" borrow pirod  : ");
-                               int borrowbook  = int.Parse(Console.ReadLine());
+                                int borrowbook = int.Parse(Console.ReadLine());
 
                                 Console.Write(" author  book : ");
                                 string author = Console.ReadLine();
 
-                                Console.Write(" copies book : ");  
-                                int  numcopis  =int.Parse(Console.ReadLine());
-                                
+                                Console.Write(" copies book : ");
+                                int numcopis = int.Parse(Console.ReadLine());
+
 
                                 Console.Write(" price  book : ");
 
@@ -410,21 +411,21 @@ namespace Systemlibrary
                                 Console.Write("enter the category id : ");
                                 int id = int.Parse(Console.ReadLine());
 
-                                  var book = new book { namebook=namebook ,borrowcopies=numcopis , author=author,borrowpireod=borrowbook,price_book=price,categoryid=id };
-                                  addbook.Add(book);
-                                  Console.WriteLine("book added successfully!");
-                                
-                                
+                                var book = new book { namebook = namebook, borrowcopies = numcopis, author = author, copies_number = borrowbook, price_book = price, categoryid = id };
+                                addbook.Add(book);
+                                Console.WriteLine("book added successfully!");
+
+
 
 
                             }
 
                             AddbOOK(bookrepo);
-                            
-                           
+
+
                             break;
                         case "2":
-                         static void getbook(bookRepo addbook)
+                            static void getbook(bookRepo addbook)
                             {
 
 
@@ -454,10 +455,10 @@ namespace Systemlibrary
 
                             break;
                         case "3":
-                          
 
-                                GetBook(bookrepo);
-                            
+
+                            GetBook(bookrepo);
+
                             static void updatebook(bookRepo addbook)
                             {
 
@@ -502,7 +503,7 @@ namespace Systemlibrary
                             break;
                         case "4":
 
-                           
+
                             static void deletebook(bookRepo addbook)
                             {
 
@@ -543,7 +544,7 @@ namespace Systemlibrary
 
 
                 var categoryRepository = new categoryRepo(new ApplicationContext());
-               
+
                 bool running = true;
                 while (running)
                 {
@@ -559,7 +560,7 @@ namespace Systemlibrary
                     switch (choice)
                     {
                         case "1":
-                             static void AddCategory(categoryRepo repo)
+                            static void AddCategory(categoryRepo repo)
                             {
                                 Console.Write("Enter the category name: ");
                                 string catName = Console.ReadLine();
@@ -582,7 +583,7 @@ namespace Systemlibrary
 
 
 
-                             static void GetCategoryByName(categoryRepo repo)
+                            static void GetCategoryByName(categoryRepo repo)
                             {
                                 Console.Write("Enter the category name to search: ");
                                 string catName = Console.ReadLine();
@@ -602,7 +603,7 @@ namespace Systemlibrary
 
                             break;
                         case "3":
-                             static void UpdateCategory(categoryRepo repo)
+                            static void UpdateCategory(categoryRepo repo)
                             {
                                 Console.Write("Enter the ID of the category to update: ");
                                 int categoryId = int.Parse(Console.ReadLine());
@@ -620,7 +621,7 @@ namespace Systemlibrary
 
                             break;
                         case "4":
-                             static void DeleteCategory(categoryRepo repo)
+                            static void DeleteCategory(categoryRepo repo)
                             {
                                 Console.Write("Enter the ID of the category to delete: ");
                                 int categoryId = int.Parse(Console.ReadLine());
@@ -684,17 +685,17 @@ namespace Systemlibrary
                 Console.WriteLine(" Book details:");
                 foreach (var book in getbook)
                 {
-                    Console.WriteLine($"id book : {book.bookid}\t"+
+                    Console.WriteLine($"id book : {book.bookid}\t" +
                                         $"book name : {book.namebook}\t" +
                                       $" book author : {book.author} \t" +
                                       $"book category : {book.categoryid}\t" +
-                                      $"book borrow: {book.borrowcopies}\t" +
-                                      $"book number of copies: {book.borrowpireod}");
+                                      $"book borrow period: {book.borrowcopies}\t" +
+                                      $"book number of copies: {book.copies_number}");
                 }
             }
         }
 
-    }
+  }
 
-    }
+   }
 
