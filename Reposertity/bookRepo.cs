@@ -75,9 +75,24 @@ namespace Systemlibrary.Reposertity
                 _context.SaveChanges();
             }
         }
-        public void Update(int bookid, string namebook,string author, int borrowcopies)
+        //public void Update(int bookid, string namebook,string author, int borrowcopies)
+        //{
+        //    var book = GetByID(bookid);
+
+        //    if (book != null)
+        //    {
+        //        book.namebook = namebook;
+        //        book.author = author;
+        //        book.borrowcopies = borrowcopies;
+
+        //        _context.Books.Update(book);
+        //        _context.SaveChanges();
+        //    }
+        //}
+
+        public void Update(int bookid, string namebook, string author, int borrowcopies)
         {
-            var book = GetByID(bookid);
+            var book = _context.Books.Find(bookid);
 
             if (book != null)
             {
@@ -85,8 +100,8 @@ namespace Systemlibrary.Reposertity
                 book.author = author;
                 book.borrowcopies = borrowcopies;
 
-                _context.Books.Update(book);
-                _context.SaveChanges();
+                _context.Books.Update(book); // This line is redundant with tracked entities, but safe
+                _context.SaveChanges();      // Ensure SaveChanges is called here
             }
         }
 
@@ -116,9 +131,22 @@ namespace Systemlibrary.Reposertity
             return _context.Books.Sum(b => b.borrowcopies);
         }
 
-        public int getTotalBooksPerCategoryName(string name )
-           {
-            return _context.Books.Include(b => b.category).Where(b => b.category.cat_name == name).Count();
+        //public int getTotalBooksPerCategoryName(string name )
+        //   {
+        //    return _context.Books.Include(b => b.category).Where(b => b.category.cat_name == name).Count();
+        //}
+        public int getTotalBooksPerCategoryName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("Category name cannot be null or empty.");
+            }
+
+            return _context.Books
+                .Include(b => b.category) // Ensure the category is loaded
+                .Where(b => b.category != null && b.category.cat_name == name)
+                .Count();
         }
+
     }
 }
