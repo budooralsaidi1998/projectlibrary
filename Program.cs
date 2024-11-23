@@ -1,7 +1,9 @@
 ﻿using Azure.Identity;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
 using System.Reflection;
 using System.Transactions;
 using Systemlibrary.models;
@@ -11,6 +13,7 @@ namespace Systemlibrary
 {
     public class Program
     {
+        private static int LoggedInUserId=-1;
         static void Main(string[] args)
         {
 
@@ -88,6 +91,7 @@ namespace Systemlibrary
 
                         break;
                     case "3":
+                        
                         static void RegisterUser(userRepo userrepo)
 
                         {
@@ -138,6 +142,7 @@ namespace Systemlibrary
                             {
                                 if (email == loginuser.userEmail || pass == loginuser.Password)
                                 {
+                                    LoggedInUserId=loginuser.userid;
                                     UserMenu();
                                 }
                             }
@@ -159,7 +164,7 @@ namespace Systemlibrary
 
 
 
-            static void menuAdmin(AdminRepo adminprocess, bookRepo bookRepo)
+            static void menuAdmin(AdminRepo adminprocess, bookRepo bookRepo,categoryRepo cate)
             {
                 var bookrepoo = new bookRepo(new ApplicationContext());
                 var userre = new userRepo(new ApplicationContext());
@@ -170,7 +175,7 @@ namespace Systemlibrary
                     Console.WriteLine("\nChoose an option:");
                     Console.WriteLine("1.BOOKS PROCESS");
                     Console.WriteLine("2.CATEGORY PROCESS ");
-                    Console.WriteLine("3.USER PROCESS ");
+                    Console.WriteLine("3.report books ");
                     Console.WriteLine("7. Exit");
                     Console.Write("Enter your choice: ");
                     var choice = Console.ReadLine();
@@ -185,8 +190,27 @@ namespace Systemlibrary
                             Categorymenu();
                             break;
                         case "3":
-                            UserMenu();
-                            break;
+
+                            var GetTotalPrice = bookRepo.GetTotalPrice;
+                            var GgetMaxPrice = bookRepo.GgetMaxPrice;
+                            var getTotalBorrowedBooks = bookRepo.getTotalBorrowedBooks;
+                            var categ = bookRepo.getTotalBooksPerCategoryName;
+
+                            var categories = bookRepo.getTotalBooksPerCategoryName;
+
+                            Console.WriteLine("===== Book Report =====");
+                            Console.WriteLine($"Total Price of All Books: {GetTotalPrice}");
+                            Console.WriteLine($"Highest Book Price: {bookRepo.GgetMaxPrice}");
+                            Console.WriteLine($"Total Borrowed Books: {bookRepo.getTotalBorrowedBooks}");
+                            Console.WriteLine("Books per Category:");
+                            //foreach (var category in categ)
+                            //{
+                            //    Console.WriteLine($"- {category.CategoryName}: {category.Count} books");
+                            //}
+                            //Console.WriteLine("=======================");
+                    
+                    //UserMenu();
+                    break;
                         case "4":
                             running = false;
                             break;
@@ -228,6 +252,7 @@ namespace Systemlibrary
 
                             break;
                         case "2":
+
 
                             static void viewcategory(categoryRepo cate, bookRepo bookRepo)
                             {
@@ -271,15 +296,15 @@ namespace Systemlibrary
 
 
                             }
-
+                            
                             viewcategory(categoryRepository, bookRepository);
                             break;
                         case "3":
                             static void BorrowBook(borrowRepo borrowRepo, bookRepo bookRepo, userRepo userRepo)
                             {
-                                Console.Write("Enter User ID: ");
-                                int userId = int.Parse(Console.ReadLine());
-                                var user = userRepo.GetByID(userId);  // Assuming you have a userRepo to manage users
+                                //Console.Write("Enter User ID: ");
+                                //int userId = int.Parse(Console.ReadLine());
+                                var user = userRepo.GetByID(LoggedInUserId);  // Assuming you have a userRepo to manage users
 
                                 if (user == null)
                                 {
@@ -296,11 +321,13 @@ namespace Systemlibrary
                                     // Create borrowing record
                                     var borrowing = new borrowing
                                     {
-                                        userid = userId,
+                                        userid = LoggedInUserId,
                                         bookid = bookId,
                                         borrow_date = DateTime.Now,
                                         return_date = DateTime.Now.AddDays(book.copies_number),
-                                        isreturn = false  // Mark as not returned
+                                        isreturn = false// Mark as not returned
+                                      
+                                        
                                     };
 
                                     borrowRepo.Add(borrowing);
@@ -310,40 +337,92 @@ namespace Systemlibrary
                                     bookRepo.Update(book.bookid, book.namebook, book.author, book.borrowcopies);  // Ensure the update method is implemented
 
                                     Console.WriteLine("Book borrowed successfully.");
+                                    Console.ReadLine();
+
                                 }
                                 else
                                 {
                                     Console.WriteLine("Book not available or out of stock.");
                                 }
                             }
+                            GetBook(bookRepository);
                             BorrowBook(borrowRepository, bookRepository, userRepository);
+                           
                             break;
                         case "4":
+
+
+                            //static void ReturnBook(borrowRepo borrowRepo, bookRepo bookRepo)
+                            //{
+
+                            //    Console.Write("Enter User ID: ");
+                            //    int userId = int.Parse(Console.ReadLine());
+
+                            //    Console.Write("Enter Book ID to return: ");
+                            //    int bookId = int.Parse(Console.ReadLine());
+
+                            //    Console.WriteLine(" the rate of book ? ");
+                            //    int rate = int.Parse(Console.ReadLine());
+
+                            //    var borrowingRecord = borrowRepo.GetAll().FirstOrDefault(b => b.userid == userId && b.bookid == bookId && !b.isreturn);
+
+                            //    if (borrowingRecord != null)
+                            //    {
+                            //        // Mark as returned
+                            //        borrowingRecord.isreturn = true;
+                            //        borrowingRecord.actual_date = DateTime.Now;
+
+                            //        borrowingRecord.rating = rate;
+                            //        // Update the borrow record in the database
+                            //        borrowRepo.Updaterecode(borrowingRecord);
+
+                            //        // Increase the borrowcopies in the book
+                            //        var book = bookRepo.GetByID(bookId);
+                            //        if (book != null)
+                            //        {
+                            //            book.borrowcopies++;
+                            //            bookRepo.Update(book.bookid, book.namebook, book.author, book.borrowcopies);  // Ensure the update method is implemented
+                            //        }
+
+                            //        Console.WriteLine("Book returned successfully.");
+                            //        Console.ReadLine();
+
+                            //    }
+                            //    else
+                            //    {
+                            //        Console.WriteLine("No active borrowing record found for this book.");
+                            //        Console.ReadLine();
+                            //    }
+                            //}
                             static void ReturnBook(borrowRepo borrowRepo, bookRepo bookRepo)
                             {
-                                Console.Write("Enter User ID: ");
-                                int userId = int.Parse(Console.ReadLine());
+                                //Console.Write("Enter User ID: ");
+                                //int userId = int.Parse(Console.ReadLine());
 
                                 Console.Write("Enter Book ID to return: ");
                                 int bookId = int.Parse(Console.ReadLine());
 
-                                var borrowingRecord = borrowRepo.GetAll().FirstOrDefault(b => b.userid == userId && b.bookid == bookId && !b.isreturn);
+                                Console.WriteLine("The rate of book? ");
+                                int rate = int.Parse(Console.ReadLine());
+
+                                var borrowingRecord = borrowRepo.GetAll()
+                                    .FirstOrDefault(b => b.userid ==LoggedInUserId && b.bookid == bookId && !b.isreturn);
 
                                 if (borrowingRecord != null)
                                 {
                                     // Mark as returned
                                     borrowingRecord.isreturn = true;
-                                    borrowingRecord.return_date = DateTime.Now;
+                                    borrowingRecord.actual_date = DateTime.Now;
+                                    borrowingRecord.rating = rate;
 
-                                    // Update the borrow record in the database
                                     borrowRepo.Updaterecode(borrowingRecord);
 
-                                    // Increase the borrowcopies in the book
+                                    // Update book borrowcopies
                                     var book = bookRepo.GetByID(bookId);
                                     if (book != null)
                                     {
                                         book.borrowcopies++;
-                                        bookRepo.Update(book.bookid, book.namebook, book.author, book.borrowcopies);  // Ensure the update method is implemented
+                                        bookRepo.Update(book.bookid, book.namebook, book.author, book.borrowcopies);
                                     }
 
                                     Console.WriteLine("Book returned successfully.");
@@ -352,7 +431,10 @@ namespace Systemlibrary
                                 {
                                     Console.WriteLine("No active borrowing record found for this book.");
                                 }
+                                Console.ReadLine();
                             }
+
+                            GetBook(bookRepository);
                             ReturnBook(borrowRepository, bookRepository);
                             break;
 
@@ -366,6 +448,10 @@ namespace Systemlibrary
                 }
             }
 
+            static void getbookisborrow()
+            {
+
+            }
 
             static void bookmenu()
             {
@@ -644,40 +730,41 @@ namespace Systemlibrary
             }
             static void User()
             {
-                bool running = true;
-                while (running)
-                {
-                    Console.WriteLine("\nChoose an option:");
-                    Console.WriteLine("1. add new user");
-                    Console.WriteLine("2. get user by name");
-                    Console.WriteLine("3.update user ");
-                    Console.WriteLine("4. delete user ");
-                    Console.WriteLine("7. Exit");
-                    Console.Write("Enter your choice: ");
-                    var choice = Console.ReadLine();
+                //bool running = true;
+                //while (running)
+                //{
+                //    Console.WriteLine("\nChoose an option:");
+                //    Console.WriteLine("1. add new user");
+                //    Console.WriteLine("2. get user by name");
+                //    Console.WriteLine("3.update user ");
+                //    Console.WriteLine("4. delete user ");
+                //    Console.WriteLine("7. Exit");
+                //    Console.Write("Enter your choice: ");
+                //    var choice = Console.ReadLine();
 
-                    switch (choice)
-                    {
-                        case "1":
+                //    switch (choice)
+                //    {
+                //        case "1":
 
-                            break;
-                        case "2":
+                //            break;
+                //        case "2":
 
-                            break;
-                        case "3":
+                //            break;
+                //        case "3":
 
-                            break;
-                        case "4":
+                //            break;
+                //        case "4":
 
-                            break;
-                        case "5":
-                            running = false;
-                            break;
-                        default:
-                            Console.WriteLine("Invalid choice. Please try again.");
-                            break;
-                    }
-                }
+                //            break;
+                //        case "5":
+                //            running = false;
+                //            break;
+                //        default:
+                //            Console.WriteLine("Invalid choice. Please try again.");
+                //            break;
+                //    }
+                //}
+                UserMenu();
             }
             static void GetBook(bookRepo bookrepo)
             {
@@ -689,8 +776,8 @@ namespace Systemlibrary
                                         $"book name : {book.namebook}\t" +
                                       $" book author : {book.author} \t" +
                                       $"book category : {book.categoryid}\t" +
-                                      $"book borrow period: {book.borrowcopies}\t" +
-                                      $"book number of copies: {book.copies_number}");
+                                      $"borrow copies: {book.borrowcopies}\t" +
+                                      $"borrow period : {book.copies_number}");
                 }
             }
         }
