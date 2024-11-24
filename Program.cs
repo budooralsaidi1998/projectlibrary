@@ -176,7 +176,7 @@ namespace Systemlibrary
                     Console.WriteLine("1.BOOKS PROCESS");
                     Console.WriteLine("2.CATEGORY PROCESS ");
                     Console.WriteLine("3.report books ");
-                    Console.WriteLine("7. Exit");
+                    Console.WriteLine("4. Exit");
                     Console.Write("Enter your choice: ");
                     var choice = Console.ReadLine();
 
@@ -191,17 +191,18 @@ namespace Systemlibrary
                             break;
                         case "3":
 
-                            var GetTotalPrice = bookRepo.GetTotalPrice;
-                            var GgetMaxPrice = bookRepo.GgetMaxPrice;
-                            var getTotalBorrowedBooks = bookRepo.getTotalBorrowedBooks;
-                            var categ = bookRepo.getTotalBooksPerCategoryName;
+                            var GetTotalPrice = bookRepo.GetTotalPrice();
+                            var GgetMaxPrice = bookRepo.GgetMaxPrice();
+                            var getTotalBorrowedBooks = bookRepo.getTotalBorrowedBooks();
+                            //var categ = bookRepo.getTotalBooksPerCategoryName;
 
-                            var categories = bookRepo.getTotalBooksPerCategoryName;
+                            //var categories = bookRepo.getTotalBooksPerCategoryName;
 
                             Console.WriteLine("===== Book Report =====");
                             Console.WriteLine($"Total Price of All Books: {GetTotalPrice}");
-                            Console.WriteLine($"Highest Book Price: {bookRepo.GgetMaxPrice}");
-                            Console.WriteLine($"Total Borrowed Books: {bookRepo.getTotalBorrowedBooks}");
+                            Console.WriteLine($"Highest Book Price: {GgetMaxPrice}");
+                            Console.WriteLine($"Total Borrowed Books: {getTotalBorrowedBooks}");
+                            Console.ReadLine();
                             Console.WriteLine("Books per Category:");
                             //foreach (var category in categ)
                             //{
@@ -235,8 +236,8 @@ namespace Systemlibrary
                     Console.WriteLine("1.View Book");
                     Console.WriteLine("2.view Category");
                     Console.WriteLine("3.Borrow book ");
-                    Console.WriteLine("3.Return book ");
-                    Console.WriteLine("7. Exit");
+                    Console.WriteLine("4.Return book ");
+                    Console.WriteLine("5. Exit");
                     Console.Write("Enter your choice: ");
                     var choice = Console.ReadLine();
 
@@ -324,7 +325,7 @@ namespace Systemlibrary
                                         userid = LoggedInUserId,
                                         bookid = bookId,
                                         borrow_date = DateTime.Now,
-                                        return_date = DateTime.Now.AddDays(book.copies_number),
+                                        return_date = DateTime.Now.AddDays(book.borrowpireod),
                                         isreturn = false// Mark as not returned
                                       
                                         
@@ -466,7 +467,7 @@ namespace Systemlibrary
                     Console.WriteLine("2. get book by name");
                     Console.WriteLine("3.update book ");
                     Console.WriteLine("4. delete book ");
-                    Console.WriteLine("7. Exit");
+                    Console.WriteLine("5. Exit");
                     Console.Write("Enter your choice: ");
                     var choice = Console.ReadLine();
 
@@ -497,7 +498,7 @@ namespace Systemlibrary
                                 Console.Write("enter the category id : ");
                                 int id = int.Parse(Console.ReadLine());
 
-                                var book = new book { namebook = namebook, borrowcopies = numcopis, author = author, copies_number = borrowbook, price_book = price, categoryid = id };
+                                var book = new book { namebook = namebook, borrowcopies = numcopis, author = author, borrowpireod = borrowbook, price_book = price, categoryid = id };
                                 addbook.Add(book);
                                 Console.WriteLine("book added successfully!");
 
@@ -639,7 +640,7 @@ namespace Systemlibrary
                     Console.WriteLine("2. get Category by name");
                     Console.WriteLine("3.update Category ");
                     Console.WriteLine("4. delete Category ");
-                    Console.WriteLine("7. Exit");
+                    Console.WriteLine("5. Exit");
                     Console.Write("Enter your choice: ");
                     var choice = Console.ReadLine();
 
@@ -777,7 +778,7 @@ namespace Systemlibrary
                                       $" book author : {book.author} \t" +
                                       $"book category : {book.categoryid}\t" +
                                       $"borrow copies: {book.borrowcopies}\t" +
-                                      $"borrow period : {book.copies_number}");
+                                      $"borrow period : {book.borrowpireod}");
                 }
             }
         }
