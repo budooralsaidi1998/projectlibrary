@@ -449,10 +449,7 @@ namespace Systemlibrary
                 }
             }
 
-            static void getbookisborrow()
-            {
-
-            }
+          
 
             static void bookmenu()
             {
